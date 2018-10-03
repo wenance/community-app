@@ -36,8 +36,6 @@ Gruntfile-custom.js
 .sass-cache
 gems.locked
 .grunt/
-wenance/
-Dockerfile
 .classpath
 .settings/
 .project
