@@ -36,7 +36,7 @@
                 for(var i=0;i<data.length;i++)
                 {
                     data[i].field='$scope.'+data[i].field;
-                    eval(data[i].field+"="+data[i].is_enabled);
+                    eval(data[i].field+"="+data[i].isEnabled);
 
                 }
 
@@ -61,10 +61,6 @@
                     {
                         if(data[i].addressId==addressId)
                         {
-                            if(data[i].street&&$scope.street)
-                            {
-                                $scope.formData.street=data[i].street;
-                            }
                             if(data[i].addressLine1&&$scope.addressLine1)
                             {
                                 $scope.formData.addressLine1=data[i].addressLine1;
