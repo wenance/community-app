@@ -3,6 +3,10 @@
         <input type="text" name="username" placeholder="username" data-ng-model="loginCredentials.username" id="uid">
         <input type="password" name="password" placeholder="password" data-ng-model="loginCredentials.password"
                id="pwd">
+        <select class="form-control" ng-change="onSelectTenant(selectedTenant)" ng-model="selectedTenant" id="tenant">
+            <option value="">--{{'label.selecttenant' | translate}}--</option>
+            <option ng-repeat="tenant in tenants" value="{{tenant.tenantIdentifier}}">{{tenant.tenantIdentifier}}</option>
+        </select>
     </div>
     <div>
         <button id="loginButton" data-ng-click="login()">{{'label.button.login' | translate}}</button>

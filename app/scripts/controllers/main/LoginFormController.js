@@ -13,6 +13,20 @@
             scope.otpToken = null;
             scope.selectedDeliveryMethodName = null;
             scope.twofactorRememberMe = false;
+            scope.tenants = [];
+
+            resourceFactory.tenantsResource.get(function (data) {
+                scope.tenants = data;
+                let url = new URL(window.location.href);
+                scope.selectedTenant = url.searchParams.get('tenantIdentifier');
+            });
+
+            scope.onSelectTenant = function(tenant){
+                let url = new URL(window.location.href);
+                url.searchParams.delete("tenantIdentifier");
+                url.searchParams.append("tenantIdentifier", tenant);
+                window.location = unescape(url.href);
+            }
 
             scope.login = function () {
                 scope.authenticationFailed = false;
