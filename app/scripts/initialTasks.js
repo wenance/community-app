@@ -6,6 +6,8 @@
         var host = "";
         var portNumber = "";
         //accessing from openmf server
+        // Wenance - Se comenta el tratamiento de URL de Site Mifos
+        /*
         if (mainLink.hostname.indexOf('mifos.io') >= 0) {
             var hostname = window.location.hostname;
             console.log('hostname---' + hostname);
@@ -24,7 +26,9 @@
             host = "https://" + mainLink.hostname;
             console.log('hostname from mainLink = ', host);
         }
+        */
         //accessing from a file system or other servers
+        /*
         else {
             if (mainLink.hostname != "") {
                 baseApiUrl = "https://" + mainLink.hostname + (mainLink.port ? ':' + mainLink.port : '');
@@ -36,14 +40,19 @@
             var queryLink = getLocation(baseApiUrl);
             host = "https://" + queryLink.hostname + (queryLink.port ? ':' + queryLink.port : '');
             portNumber = queryLink.port;
+            */
 
-            $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = 'default';
-            ResourceFactoryProvider.setTenantIdenetifier('default');
-            if (QueryParameters["tenantIdentifier"]) {
-                $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = QueryParameters["tenantIdentifier"];
-                ResourceFactoryProvider.setTenantIdenetifier(QueryParameters["tenantIdentifier"]);
-            }
+        // Wenance - Se pasa por variable de Entorno el Host y Port del backend (Fineract API)
+        host = "https://webank-wdev.dev.fintechpeople.io:4443";
+        portNumber = 4443;
+
+        $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = 'default';
+        ResourceFactoryProvider.setTenantIdenetifier('default');
+        if (QueryParameters["tenantIdentifier"]) {
+            $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = QueryParameters["tenantIdentifier"];
+            ResourceFactoryProvider.setTenantIdenetifier(QueryParameters["tenantIdentifier"]);
         }
+        // }
 
         ResourceFactoryProvider.setBaseUrl(host);
         HttpServiceProvider.addRequestInterceptor('demoUrl', function (config) {
