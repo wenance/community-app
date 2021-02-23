@@ -40,19 +40,27 @@
             var queryLink = getLocation(baseApiUrl);
             host = "https://" + queryLink.hostname + (queryLink.port ? ':' + queryLink.port : '');
             portNumber = queryLink.port;
-            */
 
-        // Wenance - Se pasa por variable de Entorno el Host y Port del backend (Fineract API)
-        host = "https://webank-wdev.dev.fintechpeople.io:4443";
-        portNumber = 4443;
-
+            $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = 'default';
+            ResourceFactoryProvider.setTenantIdenetifier('default');
+            if (QueryParameters["tenantIdentifier"]) {
+                $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = QueryParameters["tenantIdentifier"];
+                ResourceFactoryProvider.setTenantIdenetifier(QueryParameters["tenantIdentifier"]);
+            }
+        }
+        */
+        //** Wenance Environments ************************************************************
+        // DEV
+        host = "https://api.dev.fintechpeople.io";
+        //host = "https://api.stage.fintechpeople.io";
+        //host = "https://api.fintechpeople.io";
         $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = 'default';
         ResourceFactoryProvider.setTenantIdenetifier('default');
         if (QueryParameters["tenantIdentifier"]) {
             $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = QueryParameters["tenantIdentifier"];
             ResourceFactoryProvider.setTenantIdenetifier(QueryParameters["tenantIdentifier"]);
         }
-        // }
+        //** Wenance Environments ************************************************************
 
         ResourceFactoryProvider.setBaseUrl(host);
         HttpServiceProvider.addRequestInterceptor('demoUrl', function (config) {
