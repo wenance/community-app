@@ -7,8 +7,8 @@
         var portNumber = "";
 
         //** Wenance Environments ************************************************************
-        // Fineract API DEV
-        host = "https://api.dev.fintechpeople.io";
+        // Fineract API STAGE
+        host = "https://api.stage.fintechpeople.io";
         $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = 'default';
         ResourceFactoryProvider.setTenantIdenetifier('default');
         if (QueryParameters["tenantIdentifier"]) {
