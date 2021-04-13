@@ -14,6 +14,12 @@ RUN bundle install
 RUN grunt prod
 
 FROM nginx:1.19.3
+RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /usr/src/app/dist/community-app /usr/share/nginx/html
-EXPOSE 80
+RUN sed -i 's/listen       80/listen       8080/g' /etc/nginx/conf.d/default.conf
+RUN chown -R nginx.nginx /run /var/cache/nginx /docker-entrypoint.d /docker-entrypoint.sh /etc/nginx
+EXPOSE 8080
+USER nginx
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
