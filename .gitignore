@@ -5,6 +5,7 @@ lib-cov
 lib
 .vscode
 app/bower_components
+app/styles/styles.css
 *.seed
 *.log
 *.csv
@@ -35,5 +36,5 @@ Gruntfile-custom.js
 .sass-cache
 gems.locked
 .grunt/
-.classpath
-.settings/
+bin/
+*.cache
