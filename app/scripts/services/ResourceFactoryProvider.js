@@ -1,7 +1,7 @@
 (function (module) {
     mifosX.services = _.extend(module, {
         ResourceFactoryProvider: function () {
-            var baseUrl = "" , apiVer = "/fineract-provider/api/v1", tenantIdentifier = "";
+            var baseUrl = "" , apiVer = "/core-banking-back/fineract-provider/api/v1", tenantIdentifier = "";
             this.setBaseUrl = function (url) {
                 baseUrl = url;
                 console.log(baseUrl);
